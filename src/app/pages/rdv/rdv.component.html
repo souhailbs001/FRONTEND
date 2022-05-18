@@ -1,0 +1,60 @@
+
+  <h1>Rendez-vous</h1>
+  <br>
+  
+  <form #rdvForm="ngForm" (ngSubmit)="onSubmit(rdvForm)">
+
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">Objet</label>
+      <select name="objet" id="inputState" class="form-select" required>
+        <option selected>choisissez un objet...</option>
+        <!--<option *ngFor="let o of objet "> {{o}} </option> -->
+      </select>
+    </div>
+    <br />
+    <br />
+    <div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Heure Début</mat-label>
+          <input type="time" name="heureDebut" matInput ngModel name="Debut" min="08:00" max="18:00" [(ngModel)]="rdv.heureDebut" required>
+       </mat-form-field>
+       <mat-form-field appearance="outline">
+        <mat-label>Heure Fin</mat-label>
+        <input type="time"  name="heureFin" matInput ngModel name="Fin" min="08:00" max="18:00" [(ngModel)]="rdv.heureFin" required>
+      </mat-form-field> 
+      <nz-date-picker name="dateRdv" [(ngModel)]="rdv.dateRdv" [nzDatepickerFilter]="dateFilter" (ngModelChange)="onChange($event)"></nz-date-picker>
+      </div>
+      
+  
+        <!-- DatePicker -->
+        
+      </div>
+    
+   
+
+    <!-- TextArea -->
+  <textarea  name="commentaire" [(ngModel)]="rdv.commentaire" rows="4" nz-input ></textarea>
+
+      <!-- Button -->
+  <!--<button type="submit" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal"
+      (click)="openLg(content)"> Valider &#10004;</button>-->
+  <button type="submit" name="saveCompte" class="saveButton" nz-button nzType="primary" 
+  (click)="openLg(content)">Enregistrer &#10004;</button>
+
+
+    <!-- Modal -->
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Alert!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>Votre demande a été envoyé avec succes !</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">OK</button>
+      </div>
+    </ng-template>
+
+  </form>
