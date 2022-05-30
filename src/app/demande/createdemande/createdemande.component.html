@@ -1,0 +1,56 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Demande credit</div>
+  <div class=" page__content shadow p-3 position-relative">
+    <div class="col-md-6 offset-md-3">
+      <!--<div [hidden]="submitted" style="width: 400px;">-->
+        <form #demandeform ="ngForm">
+          <div class="form-group">
+            <label for="name">NumDemande:</label>
+            <input type="text" class="form-control" name="numDemande" [(ngModel)]="demande.numDemande" required #numDemande="ngModel">
+          </div>
+         <!-- <div class="form-group">
+            <label for="name">Client:</label>
+            <input type="text" class="form-control" ngModel required name="client" id="client">
+          </div>-->
+          <!--<div *ngIf="demande.numDemande.errors && demande.numDemande.touched">
+            <h3 class="alert alert-danger">numDemande is required</h3>
+          </div>-->
+          <div class="form-group">
+            <label>type du besoin:</label>
+            <select name = "type du besoin" [(ngModel)]="demande.besoin" required #besoin="ngModel">
+              <option value = "voiture neuve">voiture neuve</option>
+              <option value = "voiture occasion">voiture occasion</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Montant:</label>
+            <input type="text" class="form-control" [(ngModel)]="demande.montant" name="montant" required #montant="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="name">duree:</label>
+            <input type="text" class="form-control" [(ngModel)]="demande.duree" name="duree" required #duree="ngModel">
+          </div>
+          <div class="form-group">
+              <label for="name">Annuité maximale:</label>
+              <input type="text" class="form-control" [(ngModel)]="demande.annuiteMaximale" name="annuiteMaximale" required #annuiteMaximale="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="name">client:</label>
+            <input type="text" class="form-control" id="client" name="client" ngModel required>
+        </div>
+      
+          <button type="submit" class="btn btn-secondary addbutton" [disabled]="demandeform.invalid " (click)="AddDemande()">Add</button>
+        </form>
+        <button style="margin-left: 10px" class="btn btn-danger" onclick="window.location.href='/demandelist';">
+          Back
+        </button>
+      </div>
+      </div>
+      
+      
+      <!--<div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+         <button class="btn btn-success" (click)="newRdv()">Add</button> -->
+      <!--</div>-->
+  <!--</div>-->
+</div>

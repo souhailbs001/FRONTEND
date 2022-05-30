@@ -1,0 +1,122 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="#" target="_blank">
+        <img src="./assets/bfi2.png" alt="BFI Groupe" width=20px>
+        <h1>OnlineBanking BFI</h1>
+      </a>
+    </div>
+
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Login" nzIcon="user" >
+        <ul>
+          <li nz-menu-item nzMatchRouter >
+            <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a href class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</a>
+          </li>
+        </ul>
+      </li>
+      
+      <li nz-submenu nzOpen nzTitle="Client" nzIcon="user" *ngIf="isLoggedIn && !showClientBoard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/addCompteClient">Ajouter Client</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/clientList">Liste des clients</a>
+          </li>
+
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Compte" nzIcon="credit-card" *ngIf="isLoggedIn">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/compteClient" *ngIf="!showClientBoard">Créer compte client</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/compte">Liste des comptes</a>
+          </li>
+
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Agence" nzIcon="shop" *ngIf="isLoggedIn && !showClientBoard">
+        <ul>
+
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rdv">Ajouter Agence</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ListRdv">Liste des Agences</a>
+          </li>
+
+
+
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Rendez-vous" nzIcon="clock-circle" *ngIf="isLoggedIn">
+        <ul>
+
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rdv">Rendez-vous</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ListRdv" *ngIf="!showClientBoard">Liste des rendez-vous</a>
+          </li>
+
+
+
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Devise" nzIcon="dollar" *ngIf="isLoggedIn && !showClientBoard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a>Ajouter devise</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/deviseList">Liste des devises</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Demande credit" nzIcon="user" *ngIf="isLoggedIn">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/createdemande">Demande</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demandelist" *ngIf="!showClientBoard">Liste des demandes</a>
+          </li>
+
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Crédit" nzIcon="bank" *ngIf="isLoggedIn">
+        <ul>
+
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/creditList">Liste des crédits</a>
+          </li>
+
+        </ul>
+      </li>
+    
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <!--<img src="../assets/bfi_2.jpg">-->
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

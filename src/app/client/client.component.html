@@ -1,0 +1,31 @@
+<h4 nz-typography>Identification</h4>
+<form #accountForm="ngForm" (ngSubmit)="accountForm">
+  <input name="numCompte" nz-input placeholder="Numéro de compte" [(ngModel)]="this.compte.numCpt" required />
+  <br />
+  <br />
+  <hr/>
+  <br />
+  <h4 nz-typography>Informations compte</h4>
+
+
+  <div class="form">
+      <div class="line1">
+    <!--<input name="client" class="inputForm" nz-input placeholder="Client"  required />-->
+    <nz-input-group nzCompact>
+      <nz-select name="client"  class="deviseDropDown" [nzPlaceholder]="'Client'" [(ngModel)]="this.compte.client">
+        <nz-option *ngFor="let c of listClients" [nzLabel]=c.nom  [nzValue]=c.nom ></nz-option>
+      </nz-select>
+    </nz-input-group>
+    </div>
+    <nz-input-group nzCompact>
+      <nz-select name="devise" class="deviseDropDown" placeholder="Devise" [(ngModel)]="this.compte.currency">
+        <nz-option  *ngFor="let d of currencies" [nzLabel]=d.cc  [nzValue]=d.cc></nz-option>
+      </nz-select>
+    </nz-input-group>
+
+  </div>
+  <label name="colure" class="checkboxCloture" nz-checkbox [(ngModel)]="checked">Cloturé</label>
+
+</form>
+<button type="submit" name="saveCompte" class="saveButton" nz-button nzType="primary" (click)="saveAccount()">Enregistrer</button>
+

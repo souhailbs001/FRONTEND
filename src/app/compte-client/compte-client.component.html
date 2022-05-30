@@ -1,0 +1,138 @@
+<h1>Ajouter Client</h1>
+
+
+<form #clientForm="ngForm" nz-form [formGroup]="validateForm" (ngSubmit)="clientForm">
+  <div class="row">
+    <div class="column">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nom" nzRequired>
+          <span>Nom</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Entrez votre nom !">
+          <input type="text" nz-input id="nom" formControlName="nom" [(ngModel)]="client.nom" name="nom" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="prenom" nzRequired>
+          <span>Prenom</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Entrez votre prénom !">
+          <input nz-input id="prenom" formControlName="prenom" [(ngModel)]="client.prenom" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+          <input nz-input formControlName="email" id="email" [(ngModel)]="client.mail" />
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Mobile</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']"
+          nzErrorTip="Please input your phone number!">
+          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+            <ng-template #addOnBeforeTemplate>
+              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                <nz-option nzLabel="+216" nzValue="+216"></nz-option>
+              </nz-select>
+            </ng-template>
+            <input formControlName="phoneNumber" id="'phoneNumber'" nz-input [(ngModel)]="client.mobile" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Sexe</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select name="select-validate" [(ngModel)]="client.sexe" [ngModelOptions]="{standalone: true}">
+            <nz-option nzValue="Homme" nzLabel="Homme"></nz-option>
+            <nz-option nzValue="Femme" nzLabel="Femme"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Date Naissance</nz-form-label>
+        <nz-date-picker [(ngModel)]="client.dateDeNaissance" (ngModelChange)="onChange($event)"
+          [ngModelOptions]="{standalone: true}"></nz-date-picker>
+        <br />
+      </nz-form-item>
+
+
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" (click)="onSaveClient()">Enregistrer</button>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- 2nd Column -->
+    </div>
+    <div class="column">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Etat civil</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select name="select-validate" [(ngModel)]="client.etatCivil" [ngModelOptions]="{standalone: true}">
+            <nz-option nzValue="célibataire" nzLabel="célibataire"></nz-option>
+            <nz-option nzValue="Marié" nzLabel="Marié"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nomPere" nzRequired>
+          <span>Nom du père</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Entrez votre nom !">
+          <input type="text" nz-input id="nomPere" formControlName="nomPere" [(ngModel)]="client.nomPere" name="nomPere" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nomMere" nzRequired>
+          <span>Nom de la mère</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Entrez votre nom !">
+          <input type="text" nz-input id="nomMere" formControlName="nomPere" [(ngModel)]="client.nomMere" name="nomMere" />
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Ntionalite</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Choisissez un pays" [(ngModel)]="client.paysNationalite" [ngModelOptions]="{standalone: true}">
+                <nz-option   *ngFor="let cntr of countries" [nzLabel]=cntr.name [nzValue]=cntr.name ></nz-option>
+              </nz-select>
+        </nz-form-control>
+        
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Pays naissance</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Choisissez un pays" [(ngModel)]="client.paysNaissance" [ngModelOptions]="{standalone: true}">
+                <nz-option   *ngFor="let cntr of countries" [nzLabel]=cntr.name [nzValue]=cntr.name></nz-option>
+              </nz-select>
+        </nz-form-control>
+        
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired>Résidence</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Choisissez un pays" [(ngModel)]="client.paysResidence" [ngModelOptions]="{standalone: true}">
+                <nz-option   *ngFor="let cnt of countries" [nzLabel]=cnt.name [nzValue]=cnt.name ></nz-option>
+              </nz-select>
+        </nz-form-control>
+        
+      </nz-form-item>
+      
+      
+
+    </div>
+
+
+
+
+
+  </div>
+</form>

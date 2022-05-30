@@ -1,0 +1,38 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">
+    Liste des demandes </div>
+  <div class="  shadow p-3 position-relative">
+    <div class=" ">
+      <table  class="table" style="width: 100%" >
+          <thead class="thead-dark">
+            <tr>
+                  <th scope="col">numDemande</th>
+                  <th scope="col">besoin</th>
+                  <th scope="col">montant</th>
+                  <th scope="col">duree</th>
+                  <th scope="col">annuite maximale </th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let demande of demandes">
+                  <td class="tableCell">{{demande.numDemande}}</td>
+                  <td>{{demande.besoin}}</td>
+                  <td>{{demande.montant}}</td>
+                  <td>{{demande.duree}}</td>
+                  <td>{{demande.annuiteMaximale}}</td>
+                  <td>{{demande.client.prenom}}</td>
+                  <td class="btn-group">
+                    <button (click)= "deleteDemande(demande.numDemande)" class="btn btn-danger" style="margin-left: 10px" >Refuser</button>
+                    <!--<button [routerLink]="['update-demande/:numDemande']" routerLinkActive="active" class="btn btn-info" style="margin-left: 10px">Accepter</button>-->
+                    <button (click)="updateDemande(demande.numDemande)" class = "btn btn-success" style="margin-left: 10px">Accepter</button>
+                    <button (click)="demandeDetails(demande.numDemande)" class = "btn btn-info" style="margin-left: 10px">Details</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+</div>
+
